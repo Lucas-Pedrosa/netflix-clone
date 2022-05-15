@@ -56,13 +56,15 @@ const Modal = () => {
         </button>
 
         <div className="relative pt-[56.25%]">
-          <ReactPlayer
-            url={`https://www.youtube.com/watch?v=${trailer}`}
-            width="100%"
-            height="100%"
-            style={{position: 'absolute', top: '0', left: '0', background: 'black'}}
-            playing
-            muted={muted} />
+          {trailer ?
+            <ReactPlayer
+              url={`https://www.youtube.com/watch?v=${trailer}`}
+              width="100%"
+              height="100%"
+              style={{position: 'absolute', top: '0', left: '0', background: 'black'}}
+              playing
+              muted={muted} /> : <p className="bg-[#181818] py-2 px-10 pb-[90px]">Trailer not available</p>
+          }
 
           <div className="absolute bottom-10 flex w-full items-center justify-between px-10">
             <div className="flex space-x-2">
@@ -90,13 +92,15 @@ const Modal = () => {
           <div className="space-y-6 text-lg">
             <div className="flex items-center space-x-2 text-sm">
               <p className="font-semibold text-green-400">{movie!.vote_average * 10}% Match</p>
-              <p className="font-light">{(movie?.release_date).replaceAll('-', '/') || (movie?.first_air_date).replaceAll('-', '/')}</p>
+              {movie?.release_date &&
+                <p className="font-light">{(movie?.release_date).replaceAll('-', '/') || (movie?.first_air_date).replaceAll('-', '/')}</p>
+              }
               <div className="flex h-4 items-center justify-center rounded border border-white/40 px-1.5 text-xs">
                 HD
               </div>
             </div>
 
-            <h1 className="font-bold text-2xl">{movie?.title}</h1>
+            <h1 className="font-bold text-2xl">{movie?.title || movie?.name || movie?.original_name}</h1>
 
             <div className="flex flex-col gap-x-10 gap-y-4 font-light md:flex-row">
               <p className="w-5/6">{movie?.overview}</p>
