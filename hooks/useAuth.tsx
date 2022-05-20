@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
-import { auth } from '../firebase'
+import { auth } from '../lib/firebase'
 
 import {
   createUserWithEmailAndPassword,
