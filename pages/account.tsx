@@ -3,6 +3,7 @@ import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
+import Membership from '../components/Membership'
 import useAuth from '../hooks/useAuth'
 import useSubscription from '../hooks/useSubscription'
 import payments from '../lib/stripe'
@@ -46,11 +47,11 @@ const Account = ({ products }: Props) => {
           </div>
         </div>
 
-        {/*<Membership />*/}
+        <Membership />
 
         <div className="accountPlans">
-          <h4>Plan Details</h4>
-          <div className="">
+          <h4 className="text-lg text-[gray]">Plan Details</h4>
+          <div className="col-span-2 font-medium">
             {products.filter((product) => product.id === subscription?.product)[0]?.name}
           </div>
           <p className="cursor-pointer text-blue-500 hover:underline md:text-right">
